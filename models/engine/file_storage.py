@@ -19,12 +19,22 @@ class FileStorage:
 
     def save(self):
         fl = FileStorage.__file_path
-        obj_v = FileStorage.__objects
-        my_dict = {key: obj_v[key].to_dict() for key in obj_v.keys()}
+        my_dict = {}
+        for key in FileStorage.__objects.keys():
+            obj = FileStorage.__objects[key]
+            obj_dict = {}
+            for obj_k in obj.__dict__:
+                if obj_k == "created_at":
+                    obj_dict[obj_k] = obj.__dict__["created_at"].isoformat()
+                if obj_k == "updated_at":
+                    obj_dict[obj_k] = obj.__dict__["updated_at"].isoformat()
+                else:
+                     obj_dict[obj_k] = obj.__dict__[obj_k]
+        print(obj_dict)
         json_file = json.dumps(my_dict)
 
         with open(fl, mode="a", encoding="utf-8") as fd:
-            fd.write(json_file)
+            fd.write(json_file + '\n')
 
     def reload(self):
         if os.path.exists(FileStorage.__file_path) is True:
