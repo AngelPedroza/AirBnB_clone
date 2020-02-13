@@ -1,7 +1,9 @@
 #!/usr/bin/python3
+""" modules for class basemodel """
+
 import uuid
 from datetime import datetime
-
+from models import storage
 
 class BaseModel:
     """ Class baseModel """
@@ -17,10 +19,12 @@ class BaseModel:
                 if key == "my_number":
                     self.my_number = kwargs[key]
                 if key == "created_at":
-                    val = datetime.strptime(kwargs[key], "%Y-%m-%dT%H:%M:%S.%f")
+                    val = datetime.strptime(kwargs[key],
+                                            "%Y-%m-%dT%H:%M:%S.%f")
                     self.created_at = val
                 if key == "updated_at":
-                    val = datetime.strptime(kwargs[key], "%Y-%m-%dT%H:%M:%S.%f")
+                    val = datetime.strptime(kwargs[key],
+                                            "%Y-%m-%dT%H:%M:%S.%f")
                     self.updated_at = val
         else:
             self.id = str(uuid.uuid4())
@@ -39,6 +43,7 @@ class BaseModel:
         with the current datetime.
         """
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """
