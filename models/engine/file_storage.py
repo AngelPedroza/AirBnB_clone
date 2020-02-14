@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""MOdule for save and read since a file"""
+"""Module for save and read since a file"""
 import json
 import os
 
