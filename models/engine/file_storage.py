@@ -28,13 +28,9 @@ class FileStorage:
         """ Deserializes JSON file """
         from models.base_model import BaseModel
 
-        if not os.path.isfile(FileStorage.__file_path):
-            return
+        if  os.path.isfile(FileStorage.__file_path) is True:
+            dict_class = {"BaseModel": BaseModel}
 
-        dict_class = {"BaseModel": BaseModel}
-
-        with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
-            obj_dict = json.load(f)
-            for key, value in obj_dict.items():
-                obj_dict = {key: dict_class[value["__class__"]](**value)}
-            FileStorage.__objects = obj_dict
+            with open(FileStorage.__file_path, mode="r", encoding="utf-8") as f:
+                for key, value in json.load(f).items():
+                    self.new(dict_class[value["__class__"]])
