@@ -24,9 +24,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             bolean = False
-            for key in storage.DC:
-                if line == key:
-                    bolean = True
+            if line in storage.DC:
+                bolean = True
 
             if bolean == False:
                 print("** class doesn't exist **")
