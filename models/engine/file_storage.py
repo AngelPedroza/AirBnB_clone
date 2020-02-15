@@ -20,9 +20,10 @@ class FileStorage:
     def save(self):
         """ Serializes JSON file """
         with open(FileStorage.__file_path, "w", encoding="utf-8") as f:
-            res = {key: value.to_dict() for key,
-                   value in FileStorage.__objects.items()}
-            json.dump(res, f)
+            res = {}
+            for key, value in FileStorage.__objects.items():
+                res[key] = value.to_dict()
+            f.write(json.dumps(res))
 
     def reload(self):
         """ Deserializes JSON file """
@@ -32,5 +33,6 @@ class FileStorage:
             dict_class = {"BaseModel": BaseModel}
 
             with open(FileStorage.__file_path, mode="r", encoding="utf-8") as f:
-                for key, value in json.load(f).items():
+                obj = json.loads(f.read())
+                for key, value in obj.items():
                     self.new(dict_class[value["__class__"]](**value))
