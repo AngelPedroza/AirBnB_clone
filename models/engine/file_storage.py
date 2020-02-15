@@ -7,6 +7,10 @@ class FileStorage:
 
     __file_path = "file.json"
     __objects = {}
+    DC = [
+        "BaseModel", "User", "Place", "State",
+        "City", "Amenity", "Review"
+    ]
 
     def all(self):
         """Return the dict of a object"""
@@ -47,3 +51,24 @@ class FileStorage:
                 obj = json.loads(f.read())
                 for key, value in obj.items():
                     self.new(dict_class[value["__class__"]](**value))
+
+    def create(self, key):
+        from models.base_model import BaseModel
+        from models.user import User
+        from models.place import Place
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.review import Review
+
+        dict_class = {
+            "BaseModel": BaseModel, "User": User,
+            "Place": Place, "State": State,
+            "City": City, "Amenity": Amenity,
+            "Review": Review
+        }
+
+        obj = dict_class[key]()
+        self.new(obj)
+        self.save()
+        return obj.id
