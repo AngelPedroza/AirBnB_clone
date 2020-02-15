@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+from models.base_model import BaseModel
 class Place(BaseModel):
     city_id = "" # City.id format
     user_id = "" # User.id format
