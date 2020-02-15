@@ -24,12 +24,15 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             bolean = False
-            for key, value in storage.all().items():
-                if line == value.__class__.__name__:
+            for key in storage.DC:
+                if line == key:
                     bolean = True
 
             if bolean == False:
                 print("** class doesn't exist **")
+            if bolean == True:
+                new_obj_id = storage.create(line)
+                print(new_obj_id)
 
     def do_show(self, line):
         """ command show """
