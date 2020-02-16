@@ -29,6 +29,25 @@ class FileStorage:
                 res[key] = value.to_dict()
             f.write(json.dumps(res))
 
+    def str_class(self):
+        """ Classes to compare with line """
+        from models.base_model import BaseModel
+        from models.user import User
+        from models.place import Place
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.review import Review
+
+        dict_class = {"BaseModel": BaseModel,
+                      "User": User,
+                      "Place": Place,
+                      "State": State,
+                      "City": City,
+                      "Amenity": Amenity,
+                      "Review": Review}
+        return dict_class
+
     def reload(self):
         """ Deserializes JSON file """
         from models.base_model import BaseModel
