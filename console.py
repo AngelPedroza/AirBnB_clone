@@ -46,7 +46,7 @@ class HBNBCommand(cmd.Cmd):
             if length < 2:
                 print("** instance id missing **")
             else:
-                key = "{}.{}".format(st[0], st[1])
+                key = "{} {}".format(st[0], st[1])
                 if key in storage.all():
                     print(storage.all()[key])
                 else:
@@ -64,7 +64,7 @@ class HBNBCommand(cmd.Cmd):
             if length < 2:
                 print("** instance id missing **")
             else:
-                key = "{}.{}".format(st[0], st[1])
+                key = "{} {}".format(st[0], st[1])
                 if key in storage.all():
                     del storage.all()[key]
                     storage.save()
