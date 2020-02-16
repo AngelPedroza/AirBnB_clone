@@ -2,6 +2,7 @@
 import cmd
 from models import storage
 from models.engine import file_storage
+from models.engine.file_storage import FileStorage
 
 class HBNBCommand(cmd.Cmd):
     """Console for AirBNB clone"""
@@ -86,12 +87,33 @@ class HBNBCommand(cmd.Cmd):
                         print([str(value)])
 
     def do_update(self, line):
-        """ Updates an instance """
-        counter = 0
-        for key, value in storage.all().items:
-            if line == type(value).__name__:
-                counter += 1
+        """ Updates instance """
+        st = line.split(" ")
+        length = len(st)
 
+        if line is None or line == "":
+            print("** class name missing **")
+        elif length < 2:
+            print("** instance id missing **")
+        elif length == 2:
+            print("** attribute name missing **")
+        elif length == 3:
+            print("** value missing **")
+        elif st[0] not in storage.str_class():
+            print("** class doesn't exist **")
+        else:
+            k = "{}.{}".format(st[0], st[1])
+            boolean = False
+            objs = FileStorage.all(self)
+
+            for key, value in storage.all().items():
+                if key == k:
+                    boolean = True
+                    new_value = objs.get(key)
+                    setattr(value, st[2], st[3])
+                    value.save()
+            if boolean == False:
+                print("** no instance found **")
     def emptyline(self):
         pass
 
