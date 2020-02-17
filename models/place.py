@@ -1,6 +1,10 @@
 #!/usr/bin/python3
+"""Place Modele"""
 from models.base_model import BaseModel
+
+
 class Place(BaseModel):
+    """The main class to structurate the data base"""
     city_id = "" # City.id format
     user_id = "" # User.id format
     name = ""

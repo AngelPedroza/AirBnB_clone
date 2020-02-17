@@ -3,8 +3,12 @@
 import json
 import os
 
-class FileStorage:
 
+class FileStorage:
+    """
+    This class is for save al the instances and
+    reloads once restart the console
+    """
     __file_path = "file.json"
     __objects = {}
     DC = ["BaseModel", "User", "Place", "State",
@@ -51,27 +55,3 @@ class FileStorage:
                     obj = dict_class[value["__class__"]](**value)
                     key_obj = value["__class__"] + "." + value["id"]
                     FileStorage.__objects[key_obj] = obj
-
-    # def create(self, key):
-    #     from models.base_model import BaseModel
-    #     from models.user import User
-    #     from models.place import Place
-    #     from models.state import State
-    #     from models.city import City
-    #     from models.amenity import Amenity
-    #     from models.review import Review
-
-    #     dict_class = {
-    #         "BaseModel": BaseModel, "User": User,
-    #         "Place": Place, "State": State,
-    #         "City": City, "Amenity": Amenity,
-    #         "Review": Review
-    #     }
-
-    #     print(key)
-    #     obj = dict_class[key]()
-    #     print("THIS IS THE OBJECT", obj)
-    #     print(dict_class[key])
-    #     self.new(obj)
-    #     self.save()
-    #     return obj.id

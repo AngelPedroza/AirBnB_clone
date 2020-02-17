@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Gooooooo AirBNB"""
 import cmd
 from models import storage
 from models.engine import file_storage
