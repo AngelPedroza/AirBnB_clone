@@ -49,7 +49,8 @@ class FileStorage:
                 "Review": Review
             }
 
-            with open(FileStorage.__file_path, mode="r", encoding="utf-8") as f:
+            with open(FileStorage.__file_path, mode="r",
+                      encoding="utf-8") as f:
                 obj = json.loads(f.read())
                 for key, value in obj.items():
                     obj = dict_class[value["__class__"]](**value)

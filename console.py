@@ -12,15 +12,16 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 
+
 class HBNBCommand(cmd.Cmd):
     """Console for AirBNB clone"""
     prompt = '(hbnb) '
 
-    #Command to help and exit to the console
+    # Command to help and exit to the console
 
     def precmd(self, line):
-        new_line = line.replace(".", " ").replace("(","").replace(")","")
-       # new_line = new_line.split()
+        new_line = line.replace(".", " ").replace("(", "").replace(")", "")
+        # new_line = new_line.split()
         print(line)
         return new_line
 
@@ -43,10 +44,10 @@ class HBNBCommand(cmd.Cmd):
             if line in storage.DC:
                 bolean = True
 
-            if bolean == False:
+            if bolean is False:
                 print("** class doesn't exist **")
                 return
-            if bolean == True:
+            if bolean is True:
                 new_obj_id = eval(line + "()")
                 new_obj_id.save()
                 print(new_obj_id.id)
@@ -54,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, line):
         """ command show """
         if line is None or line == "":
-             print("** class name missing **")
+            print("** class name missing **")
         else:
             st = line.split(" ")
             length = len(st)
@@ -72,7 +73,7 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, line):
         """ Function that destroy the instance """
         if line is None or line == "":
-             print("** class name missing **")
+            print("** class name missing **")
         else:
             st = line.split(" ")
             length = len(st)
@@ -141,7 +142,7 @@ class HBNBCommand(cmd.Cmd):
                     if valor[1:] == "\"":
                         valor = valor[1:-1]
 
-                    setattr(value, st[2], type(getattr(value, st[2], "NO ATTR"))(valor))
+                    setattr(value, st[2], type(getattr(value,st[2], "NO ATTR"))(valor))
                     value.save()
             if boolean == False:
                 print("** no instance found **")

@@ -5,6 +5,7 @@ import uuid
 from datetime import datetime
 from models import storage
 
+
 class BaseModel:
     """ Class baseModel """
 
@@ -35,7 +36,7 @@ class BaseModel:
         return "[{}] ({}) {}".format(self.__class__.__name__, self.id,
                                      self.__dict__)
 
-    #Public instance methods
+    # Public instance methods
     def save(self):
         """
         updates the public instance attribute updated_at
