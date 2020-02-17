@@ -69,7 +69,9 @@ class FileStorage:
             with open(FileStorage.__file_path, mode="r", encoding="utf-8") as f:
                 obj = json.loads(f.read())
                 for key, value in obj.items():
-                    self.new(dict_class[value["__class__"]](**value))
+                    obj = dict_class[value["__class__"]](**value)
+                    key_obj = value["__class__"] + "." + value["id"]
+                    FileStorage.__objects[key_obj] = obj
 
     def create(self, key):
         from models.base_model import BaseModel

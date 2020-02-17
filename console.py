@@ -32,6 +32,7 @@ class HBNBCommand(cmd.Cmd):
             if bolean == False:
                 print("** class doesn't exist **")
             if bolean == True:
+                print(line)
                 new_obj_id = storage.create(line)
                 print(new_obj_id)
 
@@ -110,7 +111,7 @@ class HBNBCommand(cmd.Cmd):
                 if key == k:
                     boolean = True
                     new_value = objs.get(key)
-                    setattr(value, st[2], st[3])
+                    setattr(value, st[2], str(st[3]))
                     value.save()
             if boolean == False:
                 print("** no instance found **")
