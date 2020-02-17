@@ -136,10 +136,11 @@ class HBNBCommand(cmd.Cmd):
                     boolean = True
                     new_value = objs.get(key)
                     valor = st[3]
+
                     if valor[1:] == "\"":
-                        setattr(value, st[2], valor[1:-1])
-                    else:
-                        setattr(value, st[2], valor)
+                        valor = valor[1:-1]
+
+                    setattr(value, st[2], type(getattr(value, st[2], "NO ATTR"))(valor))
                     value.save()
             if boolean == False:
                 print("** no instance found **")
