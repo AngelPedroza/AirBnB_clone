@@ -32,7 +32,7 @@ class BaseModel:
 
     def __str__(self):
         """Return a string of all atributtes of a instace"""
-        return "[{}] ({}) {}".format(__class__.__name__, self.id,
+        return "[{}] ({}) {}".format(self.__class__.__name__, self.id,
                                      self.__dict__)
 
     #Public instance methods

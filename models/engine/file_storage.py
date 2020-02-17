@@ -7,10 +7,8 @@ class FileStorage:
 
     __file_path = "file.json"
     __objects = {}
-    DC = [
-        "BaseModel", "User", "Place", "State",
-        "City", "Amenity", "Review"
-    ]
+    DC = ["BaseModel", "User", "Place", "State",
+          "City", "Amenity", "Review"]
 
     def all(self):
         """Return the dict of a object"""
@@ -28,25 +26,6 @@ class FileStorage:
             for key, value in FileStorage.__objects.items():
                 res[key] = value.to_dict()
             f.write(json.dumps(res))
-
-    def str_class(self):
-        """ Classes to compare with line """
-        from models.base_model import BaseModel
-        from models.user import User
-        from models.place import Place
-        from models.state import State
-        from models.city import City
-        from models.amenity import Amenity
-        from models.review import Review
-
-        dict_class = {"BaseModel": BaseModel,
-                      "User": User,
-                      "Place": Place,
-                      "State": State,
-                      "City": City,
-                      "Amenity": Amenity,
-                      "Review": Review}
-        return dict_class
 
     def reload(self):
         """ Deserializes JSON file """
@@ -73,23 +52,26 @@ class FileStorage:
                     key_obj = value["__class__"] + "." + value["id"]
                     FileStorage.__objects[key_obj] = obj
 
-    def create(self, key):
-        from models.base_model import BaseModel
-        from models.user import User
-        from models.place import Place
-        from models.state import State
-        from models.city import City
-        from models.amenity import Amenity
-        from models.review import Review
+    # def create(self, key):
+    #     from models.base_model import BaseModel
+    #     from models.user import User
+    #     from models.place import Place
+    #     from models.state import State
+    #     from models.city import City
+    #     from models.amenity import Amenity
+    #     from models.review import Review
 
-        dict_class = {
-            "BaseModel": BaseModel, "User": User,
-            "Place": Place, "State": State,
-            "City": City, "Amenity": Amenity,
-            "Review": Review
-        }
+    #     dict_class = {
+    #         "BaseModel": BaseModel, "User": User,
+    #         "Place": Place, "State": State,
+    #         "City": City, "Amenity": Amenity,
+    #         "Review": Review
+    #     }
 
-        obj = dict_class[key]()
-        self.new(obj)
-        self.save()
-        return obj.id
+    #     print(key)
+    #     obj = dict_class[key]()
+    #     print("THIS IS THE OBJECT", obj)
+    #     print(dict_class[key])
+    #     self.new(obj)
+    #     self.save()
+    #     return obj.id

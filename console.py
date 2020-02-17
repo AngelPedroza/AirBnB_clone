@@ -3,12 +3,25 @@ import cmd
 from models import storage
 from models.engine import file_storage
 from models.engine.file_storage import FileStorage
+from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 class HBNBCommand(cmd.Cmd):
     """Console for AirBNB clone"""
     prompt = '(hbnb) '
 
     #Command to help and exit to the console
+
+    def precmd(self, line):
+        new_line = line.replace(".", " ").replace("(","").replace(")","")
+       # new_line = new_line.split()
+        print(line)
+        return new_line
 
     def do_quit(self, line):
         """Quit command to exit the program
@@ -31,10 +44,11 @@ class HBNBCommand(cmd.Cmd):
 
             if bolean == False:
                 print("** class doesn't exist **")
+                return
             if bolean == True:
-                print(line)
-                new_obj_id = storage.create(line)
-                print(new_obj_id)
+                new_obj_id = eval(line + "()")
+                new_obj_id.save()
+                print(new_obj_id.id)
 
     def do_show(self, line):
         """ command show """
@@ -43,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             st = line.split(" ")
             length = len(st)
-            if st[0] not in storage.str_class():
+            if st[0] not in storage.DC:
                 print("** class doesn't exist **")
             if length < 2:
                 print("** instance id missing **")
@@ -61,7 +75,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             st = line.split(" ")
             length = len(st)
-            if st[0] not in storage.str_class():
+            if st[0] not in storage.DC:
                 print("** class doesn't exist **")
             if length < 2:
                 print("** instance id missing **")
@@ -80,12 +94,22 @@ class HBNBCommand(cmd.Cmd):
 
         else:
             st = line.split(" ")
-            if st[0] not in storage.str_class():
+            if st[0] not in storage.DC:
                 print("** class doesn't exist **")
             else:
+                counter = 1
                 for key, value in storage.all().items():
-                    if st[0] == type(value).__name__:
-                        print([str(value)])
+                    if st[0] in value.__class__.__name__:
+                        counter += 1
+
+                i = 1
+                for key, value in storage.all().items():
+                    if st[0] in value.__class__.__name__:
+                        i += 1
+                        if i == counter:
+                            print([str(value)])
+                        else:
+                            print([str(value)], end=", ")
 
     def do_update(self, line):
         """ Updates instance """
@@ -100,7 +124,7 @@ class HBNBCommand(cmd.Cmd):
             print("** attribute name missing **")
         elif length == 3:
             print("** value missing **")
-        elif st[0] not in storage.str_class():
+        elif st[0] not in storage.DC:
             print("** class doesn't exist **")
         else:
             k = "{}.{}".format(st[0], st[1])
@@ -111,10 +135,15 @@ class HBNBCommand(cmd.Cmd):
                 if key == k:
                     boolean = True
                     new_value = objs.get(key)
-                    setattr(value, st[2], str(st[3]))
+                    valor = st[3]
+                    if valor[1:] == "\"":
+                        setattr(value, st[2], valor[1:-1])
+                    else:
+                        setattr(value, st[2], valor)
                     value.save()
             if boolean == False:
                 print("** no instance found **")
+
     def emptyline(self):
         pass
 
