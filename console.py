@@ -58,7 +58,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_create(self, line):
-        """Verificate if line is a AirBnb class"""
+        """Create a instance of a AirBnb class"""
         if line is None or line == "":
             print("** class name missing **")
         else:

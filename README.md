@@ -2,6 +2,10 @@
 
 ## Description
 This proyect is the console to make a clone of AirBnb. In this proyect we was create the classes that we will use in the next proyects and create a console to manage this clases, save these classes in a file a reloads the classes to the console.
+### Allowed Classes
+- BaseModel
+- User
+- 
 
 ## Command Interpreter Description
 The console is the main function in this proyect, you can execute it with the next command:
@@ -98,6 +102,28 @@ This command return how many instance of the class exist. ***Example:***
 2
 (hbnb) count BaseModel
 1
+(hbnb)
+```
+#### quit
+This command just works to close de console. **Example:**
+```
+(hbnb) all BaseModel
+["[BaseModel] (7fe27032-6d35-47c4-890f-6b3aa0ae6f3c) {'id': '7fe27032-6d35-47c4-890f-6b3aa0ae6f3c', 'created_at': datetime.datetime(2020, 2, 18, 16, 27, 41, 583126), 'updated_at': datetime.datetime(2020, 2, 18, 16, 27, 41, 583153)}"]
+(hbnb) quit
+$
+```
+
+#### help
+This command show the commands with commments for see how the command works. **Example:**
+```
+(hbnb) help
+
+Documented commands (type help <topic>):
+========================================
+EOF  all  count  create  destroy  help  quit  show  update
+
+(hbnb) help create
+Create a instance of a AirBnb class
 (hbnb)
 ```
 
