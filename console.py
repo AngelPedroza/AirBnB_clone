@@ -21,6 +21,10 @@ class HBNBCommand(cmd.Cmd):
     l_clas = ["BaseModel", "User", "City", "Place", "State", "Amenity", "Review"]
     l_com = ["show", "all", "create", "update"]
 
+    def postloop(self):
+        """Execute a new line in the final of cmdloop"""
+        print()
+
     def precmd(self, line):
         """
         Excute befoer cmdloop but after the input,
