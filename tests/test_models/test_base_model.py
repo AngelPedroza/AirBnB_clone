@@ -2,16 +2,16 @@
 """Unittest module for the BaseModel Class."""
 
 #from models import storage
-#from models.base_model import BaseModel
-#from models.engine.file_storage import FileStorage
+from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
 #from datetime import datetime
-#import json
-#import os
+import json
+import os
 #import re
 #import time
 #import unittest
-#import uuid
-
+import uuid
+import unittest
 
 class Test_base(unittest.TestCase):
 
@@ -21,16 +21,12 @@ class Test_base(unittest.TestCase):
         """Sets up methods"""
         pass
 
-    def kill(self):
-        """kill methods"""
-        self.reset_file()
-        pass
-
-    def reset_file(self):
-        """Reset file.json"""
-        FileStorage._FileStorage__objects = {}
-        if os.path.isfile(FileStorage._FileStorage__file_path):
-            os.remove(FileStorage._FileStorage__file_path)
+    def tearDown(self):
+        """ reset file.json """
+        try:
+            remove("file.json")
+        except:
+            pass
 
     def test_task_3(self):
         """Tests instances in BaseModel"""
@@ -39,3 +35,10 @@ class Test_base(unittest.TestCase):
         self.assertEqual(str(type(base)), "<class 'models.base_model.BaseModel'>")
         self.assertIsInstance(base, BaseModel)
         self.assertTrue(issubclass(type(base), BaseModel))
+
+    def test_no_args(self):
+        """ test without arguments """
+        with self.assertRaises(TypeError) as error:
+            BaseModel.__init__()
+        err = "__init__() missing 1 required positional argument: 'self'"
+        self.assertEqual(str(error.exception), err)
