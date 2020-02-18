@@ -148,7 +148,7 @@ class HBNBCommand(cmd.Cmd):
                     new_value = objs.get(key)
                     valor = st[3]
 
-                    if valor[1:] == "\"":
+                    if valor[-1:] == "\"":
                         valor = valor[1:-1]
 
                     setattr(value, st[2], type(getattr(value,st[2], "NO ATTR"))(valor))
