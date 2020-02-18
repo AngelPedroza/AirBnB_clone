@@ -17,13 +17,22 @@ class HBNBCommand(cmd.Cmd):
     """Console for AirBNB clone"""
     prompt = '(hbnb) '
 
-    # Command to help and exit to the console
+    # Class Attributes to help precmd
+    l_clas = ["BaseModel", "User", "City", "Place", "State", "Amenity", "Review"]
+    l_com = ["show", "all", "create", "update"]
 
     def precmd(self, line):
-        new_line = line.replace(".", " ").replace("(", "").replace(")", "")
-        # new_line = new_line.split()
-        print(line)
-        return new_line
+        """
+        Excute befoer cmdloop but after the input,
+        so this method change the string in line and return it changed
+        """
+        if "." in line and "(" in line and ")" in line:
+            n_l = line.split(".")
+            cmm = n_l[1].split("(")
+            arg = cmm[1].split(")")
+            if n_l[0] in HBNBCommand.l_clas and cmm[0] in HBNBCommand.l_com:
+                line = "{} {} {}".format(cmm[0], n_l[0], arg[0])
+        return line
 
     def do_quit(self, line):
         """Quit command to exit the program
