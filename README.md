@@ -102,7 +102,7 @@ This command return how many instance of the class exist. ***Example:***
 ```
 
 ### More infomation
-This console can manage syntax like a OOP with him commands. This is the syntax: ***<ClassName>.<Command>(). Let me show a **Example:**
+This console can manage syntax like a OOP with him commands. This is the syntax: ***\<ClassName\>.\<Command\>()***. Let me show a **Example:**
 ```
 (hbnb) User.all()
 ["[User] (ef10aa9f-f388-48bc-b0bf-25283bc01ffc) {'id': 'ef10aa9f-f388-48bc-b0bf-25283bc01ffc',
