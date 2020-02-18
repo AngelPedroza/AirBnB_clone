@@ -18,12 +18,7 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
 
     # Class Attribute to help precmd
-    l_com = ["show", "all", "create", "update"]
-
-    # def postcmd(self):
-    #     """Execute a new line in the final of cmdloop"""
-    #     if line is not "quit" or line is not "EOF":
-    #         print()
+    l_com = ["show", "all", "create", "update", "count"]
 
     def precmd(self, line):
         """
@@ -34,9 +29,18 @@ class HBNBCommand(cmd.Cmd):
             n_l = line.split(".")
             cmm = n_l[1].split("(")
             arg = cmm[1].split(")")
-            if n_l[0] in FileStorage.DC and cmm[0] in HBNBCommand.l_com:
+            if n_l[0] in storage.DC and cmm[0] in HBNBCommand.l_com:
                 line = "{} {} {}".format(cmm[0], n_l[0], arg[0])
         return line
+
+    def do_count(self, line):
+        """return how many instances are"""
+        count = 0
+        if line in storage.DC:
+            for key, value in storage.all().items():
+                if str(value.__class__.__name__) == line:
+                    count += 1
+        print(count)
 
     def do_quit(self, line):
         """Quit command to exit the program
