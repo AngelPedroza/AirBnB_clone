@@ -22,7 +22,9 @@ ee49c413-023a-4b49-bd28-f2936c95460d
 This command show us the the dictionary of all attributes of an instance with him id and him class name. **Example:**
 ```
 (hbnb) show BaseModel ee49c413-023a-4b49-bd28-f2936c95460d
-[BaseModel] (ee49c413-023a-4b49-bd28-f2936c95460d) {'id': 'ee49c413-023a-4b49-bd28-f2936c95460d', 'created_at': datetime.datetime(2020, 2, 18, 16, 5, 18, 251939), 'updated_at': datetime.datetime(2020, 2, 18, 16, 5, 18, 251972)}
+[BaseModel] (ee49c413-023a-4b49-bd28-f2936c95460d) {'id': 'ee49c413-023a-4b49-bd28-f2936c95460d',
+'created_at': datetime.datetime(2020, 2, 18, 16, 5, 18, 251939),
+'updated_at': datetime.datetime(2020, 2, 18, 16, 5, 18, 251972)}
 (hbnb)
 ```
 #### all
