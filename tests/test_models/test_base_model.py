@@ -19,7 +19,11 @@ class Test_base(unittest.TestCase):
 
     def setUp(self):
         """Sets up methods"""
-        pass
+        try:
+            remove("file.json")
+        except:
+            pass
+        FileStorage._FileStorage_objects = {}
 
     def tearDown(self):
         """ reset file.json """
@@ -42,3 +46,28 @@ class Test_base(unittest.TestCase):
             BaseModel.__init__()
         err = "__init__() missing 1 required positional argument: 'self'"
         self.assertEqual(str(error.exception), err)
+
+    def test_la_re_arguments(self):
+        args = []
+        for i in range(10000):
+            args.append(i)
+        base = BaseModel(1, 2, 3)
+        base = BaseModel(*args)
+
+    def test_task3_id(self):
+        """ test for unique ids """
+        length = [BaseModel().id for i in range(10000)]
+        self.assertEqual(len(set(length)), len(length))
+
+    def test_to_dict(self):
+        """ test method to dict """
+        base = BaseModel()
+        base.name = "Maicol"
+        base.age = 22
+        convert = base.to_dict()
+        self.assertEqual(convert["id"], base.id)
+        self.assertEqual(convert["name"], base.name)
+        self.assertEqual(convert["age"], base.age)
+        self.assertEqual(convert["updated_at"], base.updated_at.isoformat())
+        self.assertEqual(convert["created_at"], base.created_at.isoformat())
+        self.assertEqual(convert["__class__"], type(base).__name__)
