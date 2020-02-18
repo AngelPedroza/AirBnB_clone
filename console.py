@@ -30,6 +30,10 @@ class HBNBCommand(cmd.Cmd):
             cmm = n_l[1].split("(")
             arg = cmm[1].split(")")
             gg = arg[0]
+            if "," in gg:
+                gg = gg.replace("\"", "").replace(" ", "")
+                gg = gg.split(",")
+                gg = "\"{} {} {}\"".format(gg[0], gg[1], gg[2])
             if n_l[0] in storage.DC and cmm[0] in HBNBCommand.l_com:
                 line = "{} {} {}".format(cmm[0], n_l[0], gg[1:-1])
         return line
