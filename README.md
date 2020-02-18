@@ -5,12 +5,15 @@ This proyect is the console to make a clone of AirBnb. In this proyect we was cr
 
 ## Command Interpreter Description
 The console is the main function in this proyect, you can execute it with the next command:
-> ./console.py
-
+```
+./console.py
+```
 Once you are in the console these are the commands with the console works:
 ### Commands
-** create **
+#### create
 This command will create us a new instance if this is allowed and return the id of this instance.
-** Example **
-> create BaseModel
-> ee49c413-023a-4b49-bd28-f2936c95460d
+**Example:**
+```
+(hbnb) create BaseModel
+(hbnb) ee49c413-023a-4b49-bd28-f2936c95460d
+```
