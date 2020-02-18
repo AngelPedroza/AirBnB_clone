@@ -18,7 +18,7 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
 
     # Class Attribute to help precmd
-    l_com = ["show", "all", "create", "update", "count"]
+    l_com = ["show", "all", "create", "update", "destroy", "count"]
 
     def precmd(self, line):
         """
