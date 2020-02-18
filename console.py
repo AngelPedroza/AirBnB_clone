@@ -17,13 +17,13 @@ class HBNBCommand(cmd.Cmd):
     """Console for AirBNB clone"""
     prompt = '(hbnb) '
 
-    # Class Attributes to help precmd
-    l_clas = ["BaseModel", "User", "City", "Place", "State", "Amenity", "Review"]
+    # Class Attribute to help precmd
     l_com = ["show", "all", "create", "update"]
 
-    def postloop(self):
-        """Execute a new line in the final of cmdloop"""
-        print()
+    # def postcmd(self):
+    #     """Execute a new line in the final of cmdloop"""
+    #     if line is not "quit" or line is not "EOF":
+    #         print()
 
     def precmd(self, line):
         """
@@ -34,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
             n_l = line.split(".")
             cmm = n_l[1].split("(")
             arg = cmm[1].split(")")
-            if n_l[0] in HBNBCommand.l_clas and cmm[0] in HBNBCommand.l_com:
+            if n_l[0] in FileStorage.DC and cmm[0] in HBNBCommand.l_com:
                 line = "{} {} {}".format(cmm[0], n_l[0], arg[0])
         return line
 
@@ -163,5 +163,5 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         pass
 
-p = HBNBCommand()
-p.cmdloop()
+if __name__ == "__main__":
+    HBNBCommand().cmdloop()
