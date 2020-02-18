@@ -29,8 +29,9 @@ class HBNBCommand(cmd.Cmd):
             n_l = line.split(".")
             cmm = n_l[1].split("(")
             arg = cmm[1].split(")")
+            gg = arg[0]
             if n_l[0] in storage.DC and cmm[0] in HBNBCommand.l_com:
-                line = "{} {} {}".format(cmm[0], n_l[0], arg[0])
+                line = "{} {} {}".format(cmm[0], n_l[0], gg[1:-1])
         return line
 
     def do_count(self, line):
