@@ -5,7 +5,11 @@ This proyect is the console to make a clone of AirBnb. In this proyect we was cr
 ### Allowed Classes
 - BaseModel
 - User
-- 
+- State
+- City
+- Amenity
+- Place
+- Review
 
 ## Command Interpreter Description
 The console is the main function in this proyect, you can execute it with the next command:
