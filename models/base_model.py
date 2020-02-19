@@ -1,16 +1,15 @@
 #!/usr/bin/python3
 """ modules for class basemodel """
-
 import uuid
 from datetime import datetime
 from models import storage
 
 
 class BaseModel:
-    """ Class baseModel """
+    """Class baseModel"""
 
     def __init__(self, *args, **kwargs):
-        """ init if base instance """
+        """init if base instance"""
         for key, value in kwargs.items():
             if key == "created_at":
                 value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
