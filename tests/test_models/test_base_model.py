@@ -4,12 +4,11 @@
 #from models import storage
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
-#from datetime import datetime
+from datetime import datetime
 import json
 import os
 #import re
-#import time
-#import unittest
+import time
 import uuid
 import unittest
 
@@ -78,3 +77,12 @@ class Test_base(unittest.TestCase):
             BaseModel.to_dict()
         err = "to_dict() missing 1 required positional argument: 'self'"
         self.assertEqual(str(error.exception), err)
+
+    def test_task3_save(self):
+        """ test for save method """
+        base = BaseModel()
+        time.sleep(0.05)
+        now = datetime.now()
+        base.save()
+        interval = now - base.updated_at
+        self.assertTrue(abs(interval.total_seconds()) < 0.01)
