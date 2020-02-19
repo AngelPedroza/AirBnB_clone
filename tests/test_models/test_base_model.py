@@ -139,3 +139,16 @@ class Test_base(unittest.TestCase):
         my_model_json = my_model.to_dict()
         my_new_model = BaseModel(**my_model_json)
         self.assertEqual(my_new_model.to_dict(), my_model.to_dict())
+
+    def test_instantiation_custom(self):
+        """ test instantiation with kwargs from custom dictionary """
+        c_dict = {"__class__": "BaseModel",
+                  "updated_at":
+                  datetime(2017, 9, 28, 21, 3, 54, 52302).isoformat(),
+                  "created_at": datetime.now().isoformat(),
+                  "id": uuid.uuid4(),
+                  "var": "a_var",
+                  "int": 22,
+                  "float":2.2}
+        new = BaseModel(**c_dict)
+        self.assertEqual(new.to_dict(), c_dict)
