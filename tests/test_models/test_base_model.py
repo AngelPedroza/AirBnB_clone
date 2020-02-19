@@ -35,7 +35,8 @@ class Test_base(unittest.TestCase):
         """Tests instances in BaseModel"""
 
         base = BaseModel()
-        self.assertEqual(str(type(base)), "<class 'models.base_model.BaseModel'>")
+        self.assertEqual(str(type(base)),
+                         "<class 'models.base_model.BaseModel'>")
         self.assertIsInstance(base, BaseModel)
         self.assertTrue(issubclass(type(base), BaseModel))
 
@@ -129,3 +130,12 @@ class Test_base(unittest.TestCase):
             BaseModel.save(self, "Angel")
         err = "save() takes 1 positional argument but 2 were given"
         self.assertEqual(str(error.exception), err)
+
+    def test_instantiation(self):
+        """ test instantiation with kwargs """
+        my_model = BaseModel()
+        my_model.name = "Holberton"
+        my_model.my_number = 89
+        my_model_json = my_model.to_dict()
+        my_new_model = BaseModel(**my_model_json)
+        self.assertEqual(my_new_model.to_dict(), my_model.to_dict())
