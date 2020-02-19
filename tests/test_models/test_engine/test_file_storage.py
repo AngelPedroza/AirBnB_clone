@@ -11,6 +11,7 @@ import time
 import uuid
 import unittest
 
+
 class Test_storage(unittest.TestCase):
 
     """Unittest for FileStorage"""
@@ -38,7 +39,7 @@ class Test_storage(unittest.TestCase):
         """ test attributes of the class """
         self.assertTrue(hasattr(FileStorage, "_FileStorage__file_path"))
         self.assertTrue(hasattr(FileStorage, "_FileStorage__objects"))
-        self.assertEqual(getattr(FileStorage,"_FileStorage__objects"), {})
+        self.assertEqual(getattr(FileStorage, "_FileStorage__objects"), {})
 
     def test_task5_all(self):
         """ test method save without arguments """
