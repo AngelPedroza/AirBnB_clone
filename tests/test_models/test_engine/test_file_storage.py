@@ -39,3 +39,10 @@ class Test_storage(unittest.TestCase):
         self.assertTrue(hasattr(FileStorage, "_FileStorage__file_path"))
         self.assertTrue(hasattr(FileStorage, "_FileStorage__objects"))
         self.assertEqual(getattr(FileStorage,"_FileStorage__objects"), {})
+
+    def test_task5_all(self):
+        """ test method save without arguments """
+        with self.assertRaises(TypeError) as error:
+            FileStorage.all(self, "Gabi")
+        err = "all() takes 1 positional argument but 2 were given"
+        self.assertEqual(str(error.exception), err)
