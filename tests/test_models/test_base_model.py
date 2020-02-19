@@ -88,8 +88,17 @@ class Test_base(unittest.TestCase):
         self.assertTrue(abs(interval.total_seconds()) < 0.01)
 
     def test_moreargs_to_dict(self):
-        """ try in empty to_dict """
+        """ try more arguments for  to_dict """
         with self.assertRaises(TypeError) as error:
             BaseModel.to_dict(self, "striker")
         err = "to_dict() takes 1 positional argument but 2 were given"
         self.assertEqual(str(error.exception), err)
+
+    def test_task3_datetime(self):
+        """ test for updated at and created at """
+        now = datetime.now()
+        base = BaseModel()
+        interval = now - base.created_at
+        self.assertTrue(abs(interval.total_seconds()) < 0.1)
+        interval = now - base.updated_at
+        self.assertTrue(abs(interval.total_seconds()) < 0.01)
