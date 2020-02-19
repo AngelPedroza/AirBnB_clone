@@ -7,10 +7,10 @@ from models.engine.file_storage import FileStorage
 from datetime import datetime
 import json
 import os
-#import re
 import time
 import uuid
 import unittest
+
 
 class Test_base(unittest.TestCase):
 
@@ -119,7 +119,7 @@ class Test_base(unittest.TestCase):
         new_dict = {key: base.to_dict()}
         self.assertTrue(os.path.isfile(FileStorage._FileStorage__file_path))
         with open(FileStorage._FileStorage__file_path,
-        "r", encoding="utf-8") as f:
+                  "r", encoding="utf-8") as f:
             self.assertEqual(len(f.read()), len(json.dumps(new_dict)))
             f.seek(0)
             self.assertEqual(json.load(f), new_dict)
@@ -149,7 +149,7 @@ class Test_base(unittest.TestCase):
                   "id": uuid.uuid4(),
                   "var": "a_var",
                   "int": 22,
-                  "float":2.2}
+                  "float": 2.2}
         new = BaseModel(**c_dict)
         self.assertEqual(new.to_dict(), c_dict)
 
