@@ -14,6 +14,24 @@ class FileStorage:
     DC = ["BaseModel", "User", "Place", "State",
           "City", "Amenity", "Review"]
 
+    def tester(self):
+        """ Deserializes JSON file """
+        from models.base_model import BaseModel
+        from models.user import User
+        from models.place import Place
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.review import Review
+
+        classname = {
+            "BaseModel": BaseModel, "User": User,
+            "Place": Place, "State": State,
+            "City": City, "Amenity": Amenity,
+            "Review": Review
+        }
+        return classname
+
     def all(self):
         """Return the dict of a object"""
         return FileStorage.__objects
