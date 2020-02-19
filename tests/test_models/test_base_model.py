@@ -71,3 +71,10 @@ class Test_base(unittest.TestCase):
         self.assertEqual(convert["updated_at"], base.updated_at.isoformat())
         self.assertEqual(convert["created_at"], base.created_at.isoformat())
         self.assertEqual(convert["__class__"], type(base).__name__)
+
+    def test_no_to_dict(self):
+        """ try in empty to_dict """
+        with self.assertRaises(TypeError) as error:
+            BaseModel.to_dict()
+        err = "to_dict() missing 1 required positional argument: 'self'"
+        self.assertEqual(str(error.exception), err)
