@@ -34,8 +34,81 @@ class Test_instanceAmenity(unittest.TestCase):
 
     def test_task9(self):
         """ test instantiatione in the user class """
-        base = Amenity()
-        self.assertEqual(str(type(base)),
+        a = Amenity()
+        self.assertEqual(str(type(a)),
                          "<class 'models.amenity.Amenity'>")
-        self.assertIsInstance(base, Amenity)
-        self.assertTrue(issubclass(type(base), Amenity))
+        self.assertIsInstance(a, Amenity)
+        self.assertTrue(issubclass(type(a), Amenity))
+
+    def test_isinstance_args(self):
+        """Test if have a instance with args"""
+        a = Amenity("Hello", 123, ["World"])
+        self.assertIsInstance(a, Amenity)
+
+    def test_isinstance_kwargs(self):
+        dic ={"hola": "world"}
+        a = Amenity(**d)
+        self.assertIsInstance(a, Amenity)
+
+class Test_amenity_attributes(unittest.TestCase):
+    """Class for check the attributes of amenity"""
+    def tearDown(self):
+        """ reset file.json """
+        try:
+            remove("file.json")
+        except:
+            pass
+
+    def exist_attr(self):
+        """Check if exist the correct att"""
+        att = ["name"]
+        a = Amenity()
+        dic = a.__dict__
+        self.assertTrue(att in dic)
+
+    def set_attr(self):
+        """Check the correct setting"""
+        a = Amenity()
+        key = ["name"]
+        val = ["Maicol"]
+        tup = tuple(key, val)
+        setattr(a, tup[0], tup[1])
+        self.assertEqual(getattr(a, tup[0], False), tup[1])
+
+    def test_initAmenity_keys(self):
+        """Check if amenity set good without more elements"""
+        a = Amenity()
+        self.asserTrue(hasattr(a, "id"))
+        self.asserTrue(hasattr(a, "created_at"))
+        self.asserTrue(hasattr(a, "updated_at"))
+
+    def test_initAmenity_values(self):
+        """Check if the amneity set good the values"""
+        a = Amenity()
+        self.assertEqual(type(a.id), str)
+        self.assertEqual(type(a.created_at), datetime)
+        self.assertEqual(type(a.updated_at), datetime)
+
+    def test_kwargsPass(self):
+        """Pass kwargs to the init"""
+        kwargs = {"helo": "world", "number": 123}
+        a = Amenity(**kwargs)
+        self.assertTrue(hasattr(a, "id"))
+        self.asserTrue(hasattr(a, "created_at"))
+        self.asserTrue(hasattr(a, "updated_at"))
+        self.asserTrue(hasattr(a, "helo"))
+        self.asserTrue(hasattr(a, "number"))
+
+        self.assetEqual(getattr(a, "helo", False), "world")
+        self.assetEqual(getattr(a, "number", False), 123)
+
+    def test_typeNameAttr(self):
+        a = Amenity()
+        setattr(a, "name", "Louis")
+        self.assertIsInstance(type(a.name), str)
+
+        setattr(a, "name", 2)
+        self.assertIsInstance(type(a.name), str)
+
+        setattr(a, "name", 2.0)
+        self.assertIsInstance(type(a.name), str)
