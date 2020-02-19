@@ -164,9 +164,10 @@ class HBNBCommand(cmd.Cmd):
                     if valor[-1:] == "\"":
                         valor = valor[1:-1]
 
-                    setattr(value, st[2], type(getattr(value,st[2], "NO ATTR"))(valor))
+                    setattr(value, st[2],
+                            type(getattr(value, st[2], "NO ATTR"))(valor))
                     value.save()
-            if boolean == False:
+            if boolean is False:
                 print("** no instance found **")
 
     def emptyline(self):
