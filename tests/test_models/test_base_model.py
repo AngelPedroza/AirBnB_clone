@@ -124,7 +124,7 @@ class Test_base(unittest.TestCase):
             f.seek(0)
             self.assertEqual(json.load(f), new_dict)
 
-    def test_task5_save(self):
+    def test_task5_save_nargs(self):
         """ test method save without arguments """
         with self.assertRaises(TypeError) as error:
             BaseModel.save(self, "Angel")
