@@ -152,3 +152,6 @@ class Test_base(unittest.TestCase):
                   "float":2.2}
         new = BaseModel(**c_dict)
         self.assertEqual(new.to_dict(), c_dict)
+
+if __name__ == "__main__":
+    unittest.main()
