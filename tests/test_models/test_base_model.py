@@ -102,3 +102,10 @@ class Test_base(unittest.TestCase):
         self.assertTrue(abs(interval.total_seconds()) < 0.1)
         interval = now - base.updated_at
         self.assertTrue(abs(interval.total_seconds()) < 0.01)
+
+    def test_task5_save(self):
+        """ test method save withuo arguments """
+        with self.assertRaises(TypeError) as error:
+            BaseModel.save()
+        err = "save() missing 1 required positional argument: 'self'"
+        self.assertEqual(str(error.exception), err)
