@@ -13,7 +13,7 @@ import uuid
 import unittest
 
 
-class Test_base(unittest.TestCase):
+class Test_instanceAmenity(unittest.TestCase):
 
     """Unittest for BaseModels."""
 
