@@ -33,3 +33,9 @@ class Test_storage(unittest.TestCase):
     def test_task_5_instantiation(self):
         """ test storage class """
         self.assertEqual(type(storage).__name__, "FileStorage")
+
+    def test_task5_attrs(self):
+        """ test attributes of the class """
+        self.assertTrue(hasattr(FileStorage, "_FileStorage__file_path"))
+        self.assertTrue(hasattr(FileStorage, "_FileStorage__objects"))
+        self.assertEqual(getattr(FileStorage,"_FileStorage__objects"), {})
