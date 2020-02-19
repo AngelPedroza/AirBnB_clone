@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Unittest module for the BaseModel Class."""
 
-#from models import storage
+from models import storage
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from datetime import datetime
@@ -103,9 +103,29 @@ class Test_base(unittest.TestCase):
         interval = now - base.updated_at
         self.assertTrue(abs(interval.total_seconds()) < 0.01)
 
-    def test_task5_save(self):
-        """ test method save withuo arguments """
+    def test_task5_save_no_args(self):
+        """ test method save without arguments """
         with self.assertRaises(TypeError) as error:
             BaseModel.save()
         err = "save() missing 1 required positional argument: 'self'"
+        self.assertEqual(str(error.exception), err)
+
+    def test_task5_save(self):
+        """ test save method """
+        base = BaseModel()
+        base.save()
+        key = "{}.{}".format(type(base).__name__, base.id)
+        new_dict = {key: base.to_dict()}
+        self.assertTrue(os.path.isfile(FileStorage._FileStorage__file_path))
+        with open(FileStorage._FileStorage__file_path,
+        "r", encoding="utf-8") as f:
+            self.assertEqual(len(f.read()), len(json.dumps(new_dict)))
+            f.seek(0)
+            self.assertEqual(json.load(f), new_dict)
+
+    def test_task5_save(self):
+        """ test method save without arguments """
+        with self.assertRaises(TypeError) as error:
+            BaseModel.save(self, "Angel")
+        err = "save() takes 1 positional argument but 2 were given"
         self.assertEqual(str(error.exception), err)
