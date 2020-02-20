@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Unittest module for the BaseModel Class."""
-
 from models import storage
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
@@ -68,8 +67,9 @@ class Test_storage(unittest.TestCase):
     def test_all_BaseModel(self):
         """ test for all() method in all classnames """
         self.kill()
-        self.assertEqual(storage.all(), {}) # check that file.json is empty
-        obj= storage.tester()["BaseModel"]()
+        self.assertEqual(storage.all(), {})
+        # check that file.json is empty
+        obj = storage.tester()["BaseModel"]()
         storage.new(obj)
         key = "{}.{}".format(type(obj).__name__, obj.id)
         self.assertTrue(key in storage.all())
@@ -78,8 +78,8 @@ class Test_storage(unittest.TestCase):
     def test_all_City(self):
         """ test for all() method in all classnames """
         self.kill()
-        self.assertEqual(storage.all(), {}) # check that file.json is empty
-        obj= storage.tester()["City"]()
+        self.assertEqual(storage.all(), {})  # check that file.json is empty
+        obj = storage.tester()["City"]()
         storage.new(obj)
         key = "{}.{}".format(type(obj).__name__, obj.id)
         self.assertTrue(key in storage.all())
@@ -88,8 +88,8 @@ class Test_storage(unittest.TestCase):
     def test_all_Review(self):
         """ test for all() method in all classnames """
         self.kill()
-        self.assertEqual(storage.all(), {}) # check that file.json is empty
-        obj= storage.tester()["Review"]()
+        self.assertEqual(storage.all(), {})  # check that file.json is empty
+        obj = storage.tester()["Review"]()
         storage.new(obj)
         key = "{}.{}".format(type(obj).__name__, obj.id)
         self.assertTrue(key in storage.all())
@@ -98,8 +98,8 @@ class Test_storage(unittest.TestCase):
     def test_all_Place(self):
         """ test for all() method in all classnames """
         self.kill()
-        self.assertEqual(storage.all(), {}) # check that file.json is empty
-        obj= storage.tester()["Place"]()
+        self.assertEqual(storage.all(), {})  # check that file.json is empty
+        obj = storage.tester()["Place"]()
         storage.new(obj)
         key = "{}.{}".format(type(obj).__name__, obj.id)
         self.assertTrue(key in storage.all())
@@ -108,8 +108,8 @@ class Test_storage(unittest.TestCase):
     def test_all_Amenity(self):
         """ test for all() method in all classnames """
         self.kill()
-        self.assertEqual(storage.all(), {}) # check that file.json is empty
-        obj= storage.tester()["Amenity"]()
+        self.assertEqual(storage.all(), {})  # check that file.json is empty
+        obj = storage.tester()["Amenity"]()
         storage.new(obj)
         key = "{}.{}".format(type(obj).__name__, obj.id)
         self.assertTrue(key in storage.all())
@@ -118,8 +118,8 @@ class Test_storage(unittest.TestCase):
     def test_all_User(self):
         """ test for all() method in all classnames """
         self.kill()
-        self.assertEqual(storage.all(), {}) # check that file.json is empty
-        obj= storage.tester()["User"]()
+        self.assertEqual(storage.all(), {})  # check that file.json is empty
+        obj = storage.tester()["User"]()
         storage.new(obj)
         key = "{}.{}".format(type(obj).__name__, obj.id)
         self.assertTrue(key in storage.all())
@@ -128,23 +128,22 @@ class Test_storage(unittest.TestCase):
     def test_all_State(self):
         """ test for all() method in all classnames """
         self.kill()
-        self.assertEqual(storage.all(), {}) # check that file.json is empty
-        obj= storage.tester()["State"]()
+        self.assertEqual(storage.all(), {})  # check that file.json is empty
+        obj = storage.tester()["State"]()
         storage.new(obj)
         key = "{}.{}".format(type(obj).__name__, obj.id)
         self.assertTrue(key in storage.all())
         self.assertEqual(storage.all()[key], obj)
 
-
     def test_re_objs_BaseModel(self):
         """ test for all() method in all classnames with many objects """
         self.kill()
-        self.assertEqual(storage.all(), {}) # check that file.json is empty
+        self.assertEqual(storage.all(), {})  # check that file.json is empty
         cl = storage.tester()["BaseModel"]
         objs = [cl() for i in range(7000)]
         [storage.new(obj) for obj in objs]
-        self.assertEqual(len(objs), len(storage.all())) # check if
-                                                        # create 7000 objs
+        self.assertEqual(len(objs), len(storage.all()))
+        # check if create 7000 objs
         for obj in objs:
             key = "{}.{}".format(type(obj).__name__, obj.id)
             self.assertTrue(key in storage.all())
