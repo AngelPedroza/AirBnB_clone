@@ -15,25 +15,24 @@ import unittest
 class Test_base(unittest.TestCase):
 
     """Unittest for BaseModels."""
-
     def setUp(self):
-        """Sets up methods"""
-        try:
-            remove("file.json")
-        except:
-            pass
-        FileStorage._FileStorage_objects = {}
+        """ setup test methods """
+        pass
+
+    def kill(self):
+        """ kill all data """
+        FileStorage._FileStorage__objects = {}
+        if os.path.isfile(FileStorage._FileStorage__file_path):
+            os.remove(FileStorage._FileStorage__file_path)
 
     def tearDown(self):
-        """ reset file.json """
-        try:
-            remove("file.json")
-        except:
-            pass
+        """ tears down test methods """
+        self.kill()
+        pass
 
     def test_task_3(self):
         """Tests instances in BaseModel"""
-
+        self.kill()
         base = BaseModel()
         self.assertEqual(str(type(base)),
                          "<class 'models.base_model.BaseModel'>")
@@ -42,12 +41,16 @@ class Test_base(unittest.TestCase):
 
     def test_no_args(self):
         """ test without arguments """
+        self.kill()
         with self.assertRaises(TypeError) as error:
             BaseModel.__init__()
         err = "__init__() missing 1 required positional argument: 'self'"
         self.assertEqual(str(error.exception), err)
 
     def test_la_re_arguments(self):
+        """ test for more arguments """
+
+        self.kill()
         args = []
         for i in range(10000):
             args.append(i)
@@ -56,11 +59,13 @@ class Test_base(unittest.TestCase):
 
     def test_task3_id(self):
         """ test for unique ids """
+        self.kill()
         length = [BaseModel().id for i in range(10000)]
         self.assertEqual(len(set(length)), len(length))
 
     def test_to_dict(self):
         """ test method to dict """
+        self.kill()
         base = BaseModel()
         base.name = "Maicol"
         base.age = 22
@@ -74,6 +79,7 @@ class Test_base(unittest.TestCase):
 
     def test_no_to_dict(self):
         """ try in empty to_dict """
+        self.kill()
         with self.assertRaises(TypeError) as error:
             BaseModel.to_dict()
         err = "to_dict() missing 1 required positional argument: 'self'"
@@ -81,6 +87,7 @@ class Test_base(unittest.TestCase):
 
     def test_task3_save(self):
         """ test for save method """
+        self.kill()
         base = BaseModel()
         time.sleep(0.05)
         now = datetime.now()
@@ -90,6 +97,7 @@ class Test_base(unittest.TestCase):
 
     def test_moreargs_to_dict(self):
         """ try more arguments for  to_dict """
+        self.kill()
         with self.assertRaises(TypeError) as error:
             BaseModel.to_dict(self, "striker")
         err = "to_dict() takes 1 positional argument but 2 were given"
@@ -97,6 +105,7 @@ class Test_base(unittest.TestCase):
 
     def test_task3_datetime(self):
         """ test for updated at and created at """
+        self.kill()
         now = datetime.now()
         base = BaseModel()
         interval = now - base.created_at
@@ -106,6 +115,7 @@ class Test_base(unittest.TestCase):
 
     def test_task5_save_no_args(self):
         """ test method save without arguments """
+        self.kill()
         with self.assertRaises(TypeError) as error:
             BaseModel.save()
         err = "save() missing 1 required positional argument: 'self'"
@@ -113,6 +123,7 @@ class Test_base(unittest.TestCase):
 
     def test_task5_save(self):
         """ test save method """
+        self.kill()
         base = BaseModel()
         base.save()
         key = "{}.{}".format(type(base).__name__, base.id)
@@ -126,6 +137,7 @@ class Test_base(unittest.TestCase):
 
     def test_task5_save_nargs(self):
         """ test method save without arguments """
+        self.kill()
         with self.assertRaises(TypeError) as error:
             BaseModel.save(self, "Angel")
         err = "save() takes 1 positional argument but 2 were given"
@@ -133,6 +145,7 @@ class Test_base(unittest.TestCase):
 
     def test_instantiation(self):
         """ test instantiation with kwargs """
+        self.kill()
         my_model = BaseModel()
         my_model.name = "Holberton"
         my_model.my_number = 89
@@ -142,6 +155,7 @@ class Test_base(unittest.TestCase):
 
     def test_instantiation_custom(self):
         """ test instantiation with kwargs from custom dictionary """
+        self.kill()
         c_dict = {"__class__": "BaseModel",
                   "updated_at":
                   datetime(2017, 9, 28, 21, 3, 54, 52302).isoformat(),
