@@ -13,8 +13,7 @@ import uuid
 import unittest
 
 
-class Test_base(unittest.TestCase):
-
+class Test_PlaceInstance(unittest.TestCase):
     """Unittest for BaseModels."""
 
     def setUp(self):
@@ -39,3 +38,14 @@ class Test_base(unittest.TestCase):
                          "<class 'models.city.City'>")
         self.assertIsInstance(base, City)
         self.assertTrue(issubclass(type(base), City))
+
+class test_CityAttr(unittest.TestCase):
+    """Check the type of attributes"""
+
+    def test_typeAttr(self):
+        """Come on"""
+        dic = {"name": "San Francisco"}
+
+        c = City(**dic)
+        self.assertEqual(type(c.state_id), str)
+        self.assertEqual(type(c.name), str)
