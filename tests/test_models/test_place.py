@@ -39,3 +39,26 @@ class Test_base(unittest.TestCase):
                          "<class 'models.place.Place'>")
         self.assertIsInstance(base, Place)
         self.assertTrue(issubclass(type(base), Place))
+
+class Test_allAttr(unittest.TestCase):
+    """Test the type and more of each attribute of city"""
+
+    def test_types(self):
+        """Test teh correct types before setit"""
+        dic = {
+            "name": "Bogota", "description": "masa", "number_rooms": 4,
+            "number_bathrooms": 2, "max_guest": 4, "price_by_night": 4000,
+            "latitude": 2.5, "longitude": 1.5
+        }
+        c = Place(**dic)
+        self.assertEqual(type(c.name), str)
+        self.assertEqual(type(c.description), str)
+        self.assertEqual(type(c.number_rooms), int)
+        self.assertEqual(type(c.number_bathrooms), int)
+        self.assertEqual(type(c.max_guest), int)
+        self.assertEqual(type(c.price_by_night), int)
+        self.assertEqual(type(c.latitude), float)
+        self.assertEqual(type(c.longitude), float)
+        self.assertEqual(type(c.city_id), str)
+        self.assertEqual(type(c.user_id), str)
+        self.assertEqual(type(c.amenity_ids), str)
