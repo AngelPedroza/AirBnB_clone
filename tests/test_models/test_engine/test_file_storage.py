@@ -125,7 +125,7 @@ class Test_storage(unittest.TestCase):
         self.assertTrue(key in storage.all())
         self.assertEqual(storage.all()[key], obj)
 
-    def test_all_State(self):
+    def test_all_state(self):
         """ test for all() method in all classnames """
         self.kill()
         self.assertEqual(storage.all(), {})  # check that file.json is empty
@@ -135,11 +135,95 @@ class Test_storage(unittest.TestCase):
         self.assertTrue(key in storage.all())
         self.assertEqual(storage.all()[key], obj)
 
+    def test_re_objs_review(self):
+        """ test for all() method in all classnames with many objects """
+        self.kill()
+        self.assertEqual(storage.all(), {})  # check that file.json is empty
+        cl = storage.tester()["Review"]
+        objs = [cl() for i in range(7000)]
+        [storage.new(obj) for obj in objs]
+        self.assertEqual(len(objs), len(storage.all()))
+        # check if create 7000 objs
+        for obj in objs:
+            key = "{}.{}".format(type(obj).__name__, obj.id)
+            self.assertTrue(key in storage.all())
+            self.assertEqual(storage.all()[key], obj)
+
+    def test_re_objs_User(self):
+        """ test for all() method in all classnames with many objects """
+        self.kill()
+        self.assertEqual(storage.all(), {})  # check that file.json is empty
+        cl = storage.tester()["User"]
+        objs = [cl() for i in range(7000)]
+        [storage.new(obj) for obj in objs]
+        self.assertEqual(len(objs), len(storage.all()))
+        # check if create 7000 objs
+        for obj in objs:
+            key = "{}.{}".format(type(obj).__name__, obj.id)
+            self.assertTrue(key in storage.all())
+            self.assertEqual(storage.all()[key], obj)
+
     def test_re_objs_BaseModel(self):
         """ test for all() method in all classnames with many objects """
         self.kill()
         self.assertEqual(storage.all(), {})  # check that file.json is empty
         cl = storage.tester()["BaseModel"]
+        objs = [cl() for i in range(7000)]
+        [storage.new(obj) for obj in objs]
+        self.assertEqual(len(objs), len(storage.all()))
+        # check if create 7000 objs
+        for obj in objs:
+            key = "{}.{}".format(type(obj).__name__, obj.id)
+            self.assertTrue(key in storage.all())
+            self.assertEqual(storage.all()[key], obj)
+
+    def test_re_objs_city(self):
+        """ test for all() method in all classnames with many objects """
+        self.kill()
+        self.assertEqual(storage.all(), {})  # check that file.json is empty
+        cl = storage.tester()["City"]
+        objs = [cl() for i in range(7000)]
+        [storage.new(obj) for obj in objs]
+        self.assertEqual(len(objs), len(storage.all()))
+        # check if create 7000 objs
+        for obj in objs:
+            key = "{}.{}".format(type(obj).__name__, obj.id)
+            self.assertTrue(key in storage.all())
+            self.assertEqual(storage.all()[key], obj)
+
+    def test_re_objs_place(self):
+        """ test for all() method in all classnames with many objects """
+        self.kill()
+        self.assertEqual(storage.all(), {})  # check that file.json is empty
+        cl = storage.tester()["Place"]
+        objs = [cl() for i in range(7000)]
+        [storage.new(obj) for obj in objs]
+        self.assertEqual(len(objs), len(storage.all()))
+        # check if create 7000 objs
+        for obj in objs:
+            key = "{}.{}".format(type(obj).__name__, obj.id)
+            self.assertTrue(key in storage.all())
+            self.assertEqual(storage.all()[key], obj)
+
+    def test_re_objs_state(self):
+        """ test for all() method in all classnames with many objects """
+        self.kill()
+        self.assertEqual(storage.all(), {})  # check that file.json is empty
+        cl = storage.tester()["State"]
+        objs = [cl() for i in range(7000)]
+        [storage.new(obj) for obj in objs]
+        self.assertEqual(len(objs), len(storage.all()))
+        # check if create 7000 objs
+        for obj in objs:
+            key = "{}.{}".format(type(obj).__name__, obj.id)
+            self.assertTrue(key in storage.all())
+            self.assertEqual(storage.all()[key], obj)
+
+    def test_re_objs_Amenity(self):
+        """ test for all() method in all classnames with many objects """
+        self.kill()
+        self.assertEqual(storage.all(), {})  # check that file.json is empty
+        cl = storage.tester()["Amenity"]
         objs = [cl() for i in range(7000)]
         [storage.new(obj) for obj in objs]
         self.assertEqual(len(objs), len(storage.all()))
