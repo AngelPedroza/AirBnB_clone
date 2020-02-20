@@ -13,7 +13,7 @@ class Test_Console(unittest.TestCase):
         """Test pep8 style"""
         pep8st = pep8.StyleGuide(quiet=True)
         res = pep8st.check_files(['console.py'])
-        self.assertEqual(result.total_errors, 0,
+        self.assertEqual(res.total_errors, 0,
                          "Found code style errors (and warnings).")
 
 if __name__ == "__main__":
