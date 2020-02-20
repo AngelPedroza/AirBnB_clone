@@ -13,7 +13,7 @@ import uuid
 import unittest
 
 
-class Test_base(unittest.TestCase):
+class Test_ReviewInstance(unittest.TestCase):
 
     """Unittest for BaseModels."""
 
@@ -39,3 +39,14 @@ class Test_base(unittest.TestCase):
                          "<class 'models.review.Review'>")
         self.assertIsInstance(base, Review)
         self.assertTrue(issubclass(type(base), Review))
+
+class Test_ReviewAttr(unittest.TestCase):
+    """Check the values of the attributes"""
+
+    def test_valuesAttr(self):
+        dic = {"text": "Hola perrito"}
+
+        r = Review(**dic)
+        self.assertEqual(type(r.place_id), str)
+        self.assertEqual(type(r.user_id), str)
+        self.assertEqual(type(r.text), str)
