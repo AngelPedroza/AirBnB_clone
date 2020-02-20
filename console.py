@@ -110,6 +110,7 @@ class HBNBCommand(cmd.Cmd):
             length = len(st)
             if st[0] not in storage.DC:
                 print("** class doesn't exist **")
+                return
             if length < 2:
                 print("** instance id missing **")
             else:
