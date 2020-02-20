@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Gooooooo AirBNB"""
 import cmd
+import json
 from models import storage
 from models.engine import file_storage
 from models.engine.file_storage import FileStorage
@@ -32,8 +33,14 @@ class HBNBCommand(cmd.Cmd):
             gg = arg[0]
             if "," in gg:
                 gg = gg.replace("\"", "").replace(" ", "")
+                # if "{" in gg:
+                #     gg = gg.replace("{", "").replace(":", ",").replace("}", "")
+                #     gg = gg.replace("\'", "")
+                #     d_gg = gg.replace(",", " ")
+                #     gg
                 gg = gg.split(",")
                 gg = "\"{} {} {}\"".format(gg[0], gg[1], gg[2])
+                print(gg)
             if n_l[0] in storage.DC and cmm[0] in HBNBCommand.l_com:
                 line = "{} {} {}".format(cmm[0], n_l[0], gg[1:-1])
         return line
@@ -83,8 +90,10 @@ class HBNBCommand(cmd.Cmd):
             length = len(st)
             if st[0] not in storage.DC:
                 print("** class doesn't exist **")
+                return
             if length < 2:
                 print("** instance id missing **")
+                return
             else:
                 key = "{}.{}".format(st[0], st[1])
                 if key in storage.all():
