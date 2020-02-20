@@ -13,7 +13,7 @@ import uuid
 import unittest
 
 
-class Test_base(unittest.TestCase):
+class Test_StateInstance(unittest.TestCase):
 
     """Unittest for BaseModels."""
 
@@ -39,3 +39,13 @@ class Test_base(unittest.TestCase):
                          "<class 'models.state.State'>")
         self.assertIsInstance(base, State)
         self.assertTrue(issubclass(type(base), State))
+
+class Test_StateAttr(unittest.TestCase):
+    """check the attributes"""
+
+    def test_typeAttr(self):
+        """goooo"""
+        dic = {"name": "perra"}
+
+        s = State(**dic)
+        self.assertEqual(type(s.name), str)
