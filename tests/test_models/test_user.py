@@ -13,7 +13,7 @@ import uuid
 import unittest
 
 
-class Test_base(unittest.TestCase):
+class Test_Userinstance(unittest.TestCase):
 
     """Unittest for BaseModels."""
 
@@ -39,3 +39,24 @@ class Test_base(unittest.TestCase):
                          "<class 'models.user.User'>")
         self.assertIsInstance(base, User)
         self.assertTrue(issubclass(type(base), User))
+
+    def test_passArgs(self):
+        """Pass args"""
+        a = User("hello", 123, "world")
+        self.assertIsInstance(a, BaseModel)
+
+    def test_passKargs(self):
+        """Pass a dict"""
+        dic = {"hello": "world", "numbers": 123, "email": "reply@prouve.com"}
+        a = User(**dic)
+        self.assertTrue(hasattr(a, "hello"))
+        self.assertTrue(hasattr(a, "numbers"))
+        self.assertTrue(hasattr(a, "email"))
+
+        self.assertEqual(getattr(a, "hello"), "world")
+        self.assertEqual(getattr(a, "numbers"), 123)
+        self.assertEqual(getattr(a, "email"), "reply@prouve.com")
+        self.assertEqual(type(getattr(a, "email")), str)
+        self.assertEqual(type(getattr(a, "password")), str)
+        self.assertEqual(type(getattr(a, "first_name")), str)
+        self.assertEqual(type(getattr(a, "last_name")), str)
