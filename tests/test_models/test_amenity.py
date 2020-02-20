@@ -47,7 +47,7 @@ class Test_instanceAmenity(unittest.TestCase):
 
     def test_isinstance_kwargs(self):
         dic ={"hola": "world"}
-        a = Amenity(**d)
+        a = Amenity(**dic)
         self.assertIsInstance(a, Amenity)
 
 class Test_amenity_attributes(unittest.TestCase):
@@ -78,9 +78,9 @@ class Test_amenity_attributes(unittest.TestCase):
     def test_initAmenity_keys(self):
         """Check if amenity set good without more elements"""
         a = Amenity()
-        self.asserTrue(hasattr(a, "id"))
-        self.asserTrue(hasattr(a, "created_at"))
-        self.asserTrue(hasattr(a, "updated_at"))
+        self.assertTrue(hasattr(a, "id"))
+        self.assertTrue(hasattr(a, "created_at"))
+        self.assertTrue(hasattr(a, "updated_at"))
 
     def test_initAmenity_values(self):
         """Check if the amneity set good the values"""
@@ -94,15 +94,16 @@ class Test_amenity_attributes(unittest.TestCase):
         kwargs = {"helo": "world", "number": 123}
         a = Amenity(**kwargs)
         self.assertTrue(hasattr(a, "id"))
-        self.asserTrue(hasattr(a, "created_at"))
-        self.asserTrue(hasattr(a, "updated_at"))
-        self.asserTrue(hasattr(a, "helo"))
-        self.asserTrue(hasattr(a, "number"))
+        self.assertTrue(hasattr(a, "created_at"))
+        self.assertTrue(hasattr(a, "updated_at"))
+        self.assertTrue(hasattr(a, "helo"))
+        self.assertTrue(hasattr(a, "number"))
 
-        self.assetEqual(getattr(a, "helo", False), "world")
-        self.assetEqual(getattr(a, "number", False), 123)
+        self.assertEqual(getattr(a, "helo", False), "world")
+        self.assertEqual(getattr(a, "number", False), 123)
 
     def test_typeNameAttr(self):
+        """check the type of the attru=ibutes"""
         a = Amenity()
         setattr(a, "name", "Louis")
         self.assertIsInstance(type(a.name), str)
