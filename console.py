@@ -154,7 +154,11 @@ class HBNBCommand(cmd.Cmd):
         elif length < 2 and st[0] in storage.DC:
             print("** instance id missing **")
         elif length == 2:
-            print("** attribute name missing **")
+            for key, value in storage.all().items():
+                if value.id == st[1]:
+                    print("** attribute name missing **")
+                    return
+            print("** no instance found **")
         elif length == 3:
             print("** value missing **")
         elif st[0] not in storage.DC:
