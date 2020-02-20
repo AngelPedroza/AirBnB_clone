@@ -151,7 +151,7 @@ class HBNBCommand(cmd.Cmd):
 
         if line is None or line == "":
             print("** class name missing **")
-        elif length < 2:
+        elif length < 2 and st[0] in storage.DC:
             print("** instance id missing **")
         elif length == 2:
             print("** attribute name missing **")
