@@ -35,6 +35,7 @@ div.locations ul, div.amenities ul{
 }
 section.filters div.locations:hover > ul, section.filters div.amenities:hover > ul{
 	display: block;
+    z-index: 999;
 }
 section.filters div.locations, section.filters div.amenities {
 	height: 100%;
