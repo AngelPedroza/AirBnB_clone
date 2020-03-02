@@ -3,7 +3,7 @@ footer {
     height: 60px;
     width: 100%;
     bottom: 0;
-    position: fixed;
+    position: relative;
     display: flex;
     justify-content: center;
     line-height: 60px;
